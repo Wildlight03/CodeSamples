@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright 2024 Samuel Freeman All rights reserved.
 
 
 #include "Framework/LandscapeCore.h"
@@ -10,9 +10,6 @@
 #include "GeometryScript/MeshBasicEditFunctions.h"
 #include "RealtimeMeshDynamicMeshConverter.h"
 #include "Kismet/GameplayStatics.h"
-
-
-
 
 
 // Sets default values
@@ -338,13 +335,13 @@ void ALandscapeCore::AsyncUpdateSection(const FChunkLocation& InVisibleChunk, co
     TStrongObjectPtr<URealtimeMeshSimple> RealtimeMeshSimple = TStrongObjectPtr<URealtimeMeshSimple>(SectionRealtimeMeshComp->GetRealtimeMeshAs<URealtimeMeshSimple>());
 
     TSharedPtr<LandscapeSectionData> LandscapeSection = MakeShared<LandscapeSectionData>(RealtimeMeshSimple.Get(), StreamSet, LandscapeNoiseParams, FChunkParams(
-        TerrainMaterial,                                           // TerrainMaterial
-        SectionScale,                                              // Scale
-        AdjSubDivitions,                                           // SubDivisions
-        SectionScale / AdjSubDivitions,                            // VertexDistance
-        UVScale,                                                   // UVScale
-        double(SectionScale * InVisibleChunk.XLocation),           // XOffset
-        double(SectionScale * InVisibleChunk.YLocation)),          // YOffset
+        TerrainMaterial,                                           
+        SectionScale,                                              
+        AdjSubDivitions,                                           
+        SectionScale / AdjSubDivitions,                            
+        UVScale,                                                   
+        double(SectionScale * InVisibleChunk.XLocation),           
+        double(SectionScale * InVisibleChunk.YLocation)),          
         BiomeBlender,
         GetActorLocation(),
         GetWorld(),
@@ -377,7 +374,6 @@ void ALandscapeCore::AsyncUpdateSection(const FChunkLocation& InVisibleChunk, co
 
 void ALandscapeCore::RemoveSections()
 {
-    // Check to see if rendered sections contains the generated section, If not add it to the list of sections to remove;  
     TArray<FChunkLocation> SectionsToRemove;
 
     for (FChunkLocation Section : GeneratedChunks)
@@ -701,10 +697,9 @@ void ALandscapeCore::MakeDynamicMeshProxy(const FChunkLocation InLocation)
 
             if (bSuccess)
             {
-                // Post processing or update UI can be dispatched to the game thread if needed
+                
                 AsyncTask(ENamedThreads::GameThread, [this, InLocation, AsyncDynamicMesh]()
                     {
-                        
                         if (GIsEditor)
                         {
                             SpawnFolaigeSection(InLocation, AsyncDynamicMesh);
