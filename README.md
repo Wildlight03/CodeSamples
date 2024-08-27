@@ -4,5 +4,5 @@ Sword Of Chad | Third Person Survival Craft
 - BuildingComponent.cpp   // Component 
 - InventoryComponent.cpp
 
-- TerraTech | Runtime Procedural Terrain Generation
+TerraTech | Runtime Procedural Terrain Generation
 - LandscapeCore.cpp
